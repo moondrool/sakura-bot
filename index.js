@@ -23,7 +23,7 @@ client.once('ready', () => {
         return;
       }
 
-      const price = parseFloat(data.pair.priceUsd).toFixed(4);
+      const price = parseFloat(data.pair.priceUsd).toFixed(8);
 
       // only update if price changed
       if (price !== lastPrice) {
