@@ -27,15 +27,10 @@ client.once('ready', () => {
       let priceNum = parseFloat(pair.priceUsd);
       let change24h = pair.priceChange?.h24 || 0;
 
-      // format price
-      let displayPrice = priceNum < 0.0001 
-        ? priceNum.toExponential(2) 
-        : priceNum.toFixed(6);
+     let displayPrice = priceNum.toFixed(7).replace(/\.?0+$/, '');
 
-      // format % change
       let displayChange = parseFloat(change24h).toFixed(2);
 
-      // emoji logic
       let emoji = '⚪';
       if (change24h > 0) emoji = '🟢';
       else if (change24h < 0) emoji = '🔴';
@@ -58,7 +53,7 @@ client.once('ready', () => {
     } catch (err) {
       console.error('Error:', err.message);
     }
-  }, 600000); // 10 minutes
+  }, 600000);
 });
 
 process.on('unhandledRejection', err => console.error(err));
